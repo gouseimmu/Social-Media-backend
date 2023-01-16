@@ -1,15 +1,22 @@
 {
-  "name": "backend",
+  "name": "s",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-     
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madhavi-Teegireddy/s.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Madhavi-Teegireddy/s/issues"
+  },
+  "homepage": "https://github.com/Madhavi-Teegireddy/s#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

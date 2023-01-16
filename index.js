@@ -1,39 +1,33 @@
-const express = require("express");
-const { connection } = require("./configs/db");
-const cors = require("cors");
-const {userRouter}=require("./routes/user.route");
-const {authenticate}=require("./middlewares/authentication.middleware");
-const {postRouter}=require("./routes/posts.route")
-require("dotenv").config();
+const express=require("express")
+const {connection}=require("./configs/db")
+const {userRouter}=require("./routes/User.route")
+const {postRouter}=require("./routes/Post.route")
+const {authenticate}=require("./middlewares/authenticate.middleware")
+require("dotenv").config()
+const cors=require("cors")
 
-const app = express();
+const app=express()
+app.use(cors({
+    origin:"*"
+}))
+app.use(express.json())
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.get("/",(req,res)=>{
+    res.send("Home Page")
+})
 
-app.use(express.json());
-
-app.use("/users", userRouter)
+app.use("/users",userRouter)
 app.use(authenticate)
-app.use("/posts", postRouter)
+app.use("/posts",postRouter)
 
-app.get("/", (req, res) => {
-  res.send("Welcome to HomePage");
-});
+app.listen(process.env.port,async()=>{
+    try{
+        await connection
+        console.log("Connected to the DB")
+    }catch(err){
+        console.log("Trouble connecting to the DB")
+        console.log(err)
 
-
-
-app.listen(process.env.port, async () => {
-  try {
-    await connection;
-    console.log("Connected to the DB");
-  } catch (err) {
-    console.log("Error While Connect to the DB");
-    console.log(err);
-  }
-
-  console.log(`Server is running on Port ${process.env.port}`);
-});
+    }
+    console.log(`running at ${process.env.port}`)
+})

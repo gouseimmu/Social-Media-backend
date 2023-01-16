@@ -1,5 +1,5 @@
 const express = require("express");
-const { PostModel } = require("../models/posts.model");
+const { PostModel } = require("../models/Post.model");
 
 const postRouter = express.Router();
 
@@ -66,6 +66,6 @@ postRouter.delete("/delete/:id", async (req, res) => {
 });
 
 module.exports = {
-  postRouter,
+  postRouter
 };
 
